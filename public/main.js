@@ -2,7 +2,7 @@ async function init() {
     let rustApp = null;
 
     try {
-        rustApp = await import('../pkg/index.js');
+        rustApp = await import('../pkg');
     } catch (e) {
         console.error(e);
         return;
