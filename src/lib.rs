@@ -1,8 +1,8 @@
-use wasm_bindgen::prelude::wasm_bindgen;
+use wasm_bindgen::prelude::*;
 use web_sys::console::log_1 as log;
 use base64::{ encode, decode };
-use image::ImageOutputFormat::Png;
 use image::load_from_memory;
+use image::ImageOutputFormat::Png;
 
 #[wasm_bindgen]
 pub fn grayscale(encoded_file: &str) -> String {
@@ -12,11 +12,9 @@ pub fn grayscale(encoded_file: &str) -> String {
     log(&"Image decoded".into());
 
     let mut img = load_from_memory(&base64_to_vector).unwrap();
-    log(&"Image loaded into memory".into());
+    log(&"Image loaded".into());
 
     img = img.grayscale();
-    //img = img.blur(12.23);
-
     log(&"Grayscale effect applied".into());
 
     let mut buffer = vec![];
@@ -29,5 +27,5 @@ pub fn grayscale(encoded_file: &str) -> String {
         encoded_img
     );
 
-    return data_url;
+    data_url
 }
